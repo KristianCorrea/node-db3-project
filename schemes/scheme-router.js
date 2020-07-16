@@ -59,8 +59,12 @@ router.post('/', (req, res) => {
 });
 
 router.post('/:id/steps', (req, res) => {
-  const stepData = req.body;
-  const { id } = req.params; 
+  const { id } = req.params;
+  const stepData = {
+    ...req.body,
+    scheme_id: id
+  }
+  
 
   Schemes.findById(id)
   .then(scheme => {
